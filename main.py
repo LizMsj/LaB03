@@ -1,35 +1,28 @@
 def check():
     while True:
-        x=int(input('Введите начальное значение = '))
-        if x>0:
+        x = int(input('Введите начальное значение = '))
+        if x > 0:
             break
         print('Недопустимое значение')
     return x
 
 def x2(x):
-    x = int(x / 2)
-    collatz(x)
+   return collatz(x // 2)
 
 def x3_1(x):
-    x = int(x * 3 + 1)
-    collatz(x)
+   return collatz(x * 3 + 1)
     
-def collatz(x):
-    if x > 0:
-        if x == 1:
-            global L
-            L.append(x)
-            print(L)
-        else:
-            L.append(x)
-            if x % 2 == 0:
-                x2(x)
-            else:
-                x3_1(x)
+def collatz (x):
+    result = []
+    result = [x]
+    if x == 1:
+        pass
+    elif x % 2 == 0:
+        result.extend(x2(x))
     else:
-        x = int(input('Введите число заново: '))
-        collatz(x)
+        result.extend(x3_1(x))
+    return result
 
-x = int(input('Начальное положительное значение = '))
-L = []
-collatz(x)
+if __name__ == '__main__':
+    x = check()
+    print(collatz(x))
